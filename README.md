@@ -1,9 +1,10 @@
 # BirtAPI
 
+Documentation: https://eclipse-birt.github.io/birt-website/docs/installation/
+
 -> How to use?
 
 After cloning the repository, you must download the Birt Designer for build your reports.
-https://eclipse-birt.github.io/birt-website/docs/installation/
 
 Save your reports on path "reports". For call, you must send a JSON for API with name of your report and parameters.
 
@@ -21,10 +22,11 @@ If you not do this, the report will presents errors. Why? Because is Birt!
 
 -----------------------------------------------------------------------
 
+Documentação: https://eclipse-birt.github.io/birt-website/docs/installation/
+
 -> Como usar?
 
 Depois de clonar o repositório, você deve baixar o Birt Designer para construir seus relatórios.
-https://eclipse-birt.github.io/birt-website/docs/installation/
 
 Salve seus relatórios no diretório "reports". Para chamar, você deve submeter um JSON para a API com o nome do seu 
 relatório e parâmetros.
