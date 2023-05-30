@@ -44,29 +44,25 @@ public class BirtReportApplication {
 
 	@SuppressWarnings("unchecked")
 	@PostMapping("/report")
-    public ResponseEntity<byte[]> gerarRelatorio(@RequestBody String json) {
+    public ResponseEntity<byte[]> generateReport(@RequestBody String json) {
         try {
-			// Pega os parametros
+
 			ObjectMapper objectMapper = new ObjectMapper();
 			Map<String, String> parametersMap = objectMapper.readValue(json, Map.class);        	
         	
-            // Configurações do BIRT
 			EngineConfig config = new EngineConfig();
 			config.getAppContext().put("spring", this.context);
 			Platform.startup(config);
 			IReportEngineFactory factory = (IReportEngineFactory) Platform.createFactoryObject(IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY);
 			IReportEngine engine = factory.createReportEngine(config);
 
-			// Carregar o design do relatório
 			IReportRunnable report = engine.openReportDesign(reportsPath + parametersMap.get("report"));
 
-			// Configurar os parâmetros
 			IRunAndRenderTask task = engine.createRunAndRenderTask(report);
 			for (Entry<String, String> parametro : parametersMap.entrySet()) {
 				task.setParameterValue(parametro.getKey(), parametro.getValue());
 			}
 
-            // Gerar o relatório em PDF
 			String reportFileName = tempPath + Calendar.getInstance().getTimeInMillis() + ".pdf";
 			
 			PDFRenderOption options = new PDFRenderOption();
@@ -76,10 +72,8 @@ public class BirtReportApplication {
 			task.run();
 			task.close();			
 
-            // Ler o arquivo do relatório gerado
-            byte[] relatorioBytes = Files.readAllBytes(Paths.get(reportFileName)); // Defina o caminho do arquivo gerado
+            byte[] relatorioBytes = Files.readAllBytes(Paths.get(reportFileName));
 
-            // Remover arquivos temporários, se necessário
             Files.deleteIfExists(Paths.get(reportFileName));
 
             return ResponseEntity.ok()
