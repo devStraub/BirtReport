@@ -16,4 +16,4 @@ You can use this JSON for look the results:
 -> WARNING!
 
 You must open the XML Source of your report and change the property "version" (line 2) for "3.2.23".
-If you not do this, the report will presents errors.
+If you not do this, the report will presents errors. Why? Because is Birt!
