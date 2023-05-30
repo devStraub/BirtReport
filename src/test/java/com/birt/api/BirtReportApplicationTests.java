@@ -1,10 +1,10 @@
-package com.birt2.api;
+package com.birt.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class BirtReportApplicationTests {
 
 	@Test
 	void contextLoads() {
