@@ -46,7 +46,6 @@ public class BirtReportApplication {
 	@PostMapping("/report")
     public ResponseEntity<byte[]> generateReport(@RequestBody String json) {
         try {
-
 			ObjectMapper objectMapper = new ObjectMapper();
 			Map<String, String> parametersMap = objectMapper.readValue(json, Map.class);        	
         	
@@ -56,7 +55,7 @@ public class BirtReportApplication {
 			IReportEngineFactory factory = (IReportEngineFactory) Platform.createFactoryObject(IReportEngineFactory.EXTENSION_REPORT_ENGINE_FACTORY);
 			IReportEngine engine = factory.createReportEngine(config);
 
-			IReportRunnable report = engine.openReportDesign(reportsPath + parametersMap.get("report"));
+			IReportRunnable report = engine.openReportDesign(reportsPath + parametersMap.get("report") + ".rptdesign");
 
 			IRunAndRenderTask task = engine.createRunAndRenderTask(report);
 			for (Entry<String, String> parametro : parametersMap.entrySet()) {
